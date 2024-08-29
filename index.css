@@ -1,0 +1,426 @@
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+input[type="text"], input[type="number"] {
+    border: black .3dvmin solid; /*  black  hsl(35, 100%, 28%, 50%)  */
+}
+
+input[type="text"]:focus{
+    outline: none;
+    background-color: hsl(35, 60%, 63%);
+    transition: .2s background-color linear;
+}
+
+input[type="number"]:focus{
+    outline: none;
+    background-color: hsl(35, 60%, 63%);
+    transition: .2s background-color linear;
+}
+
+@keyframes underline {
+    0% { text-decoration: underline 2dvmin; }
+    100% { text-decoration: underline 0.5dvmin; }
+}
+
+html, body, svg {
+    min-height: 100dvh;
+}
+
+body {
+    background-color: hsl(35, 100%, 93%);
+}
+
+input {
+    padding: .2dvmin;
+    background-color: hsl(35, 60%, 48%);
+    accent-color: hsl(35, 60%, 48%);
+    color: hsl(0, 0%, 95%);
+    /* box-sizing: border-box; */
+}
+
+space {
+    display: inline;
+    width: .5dvmin;
+}
+
+bar {
+    display: block;
+    position: fixed;
+    top: 0;
+    width: 100dvw;
+    height: 5dvmin;
+    background-color: hsl(35, 100%, 78%);
+    z-index: 3;
+}
+
+icons {
+    display: flex;
+    float: right;
+    color: hsl(0, 0%, 10%);
+    height: 5dvmin;
+    width: 20dvmin;
+    justify-content: right;
+    align-items: center;
+}
+
+field {
+    display: block;
+    margin-top: 5dvmin;
+    height: 90dvmin;
+    width: 100dvw;
+    z-index: 0;
+}
+
+state {
+    display: flex;
+    /* font-size: 3dvw; */
+    font-size: 1.6dvw;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    border-radius: 100%;
+    /* height: 12dvw;
+    width: 12dvw; */
+    height: 8dvw;
+    width: 8dvw;
+    background-color: gold;
+    border: .4dvw solid black;
+    z-index: 1;
+    transition: .2s outline;
+}
+
+state:hover, state:focus {
+    outline: solid grey .4dvw;
+}
+
+.start-state {
+    border-style: double;
+    border-width: .8dvw;
+}
+
+menu {
+    display: flex;
+    position: fixed;
+    align-content: baseline;
+    bottom: 0;
+    flex-direction: column;
+    z-index: 3;
+    min-height: 5dvmin;
+    max-height: 90dvmin;
+    /* border-top: .5dvmin hsl(0, 0%, 20%) solid; */
+}
+
+states {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: 500px;
+    min-height: 200px;
+    background-color: hsl(35, 80%, 83%);
+    overflow-y: auto;
+}
+
+stateinfo {
+    display: flex;
+    flex-direction: row;
+    min-height: 12dvmin;
+    height: 12dvmin;
+    width: auto;
+    margin: 2dvmin;
+    padding: .4dvmin;
+    /* scroll-margin: 2dvmin; */
+    /* scroll-padding-top: 20em; */
+    background-color: hsl(35, 100%, 28%, 30%);
+    border: .3dvmin solid black; /* might change back to .1dvmin */
+    justify-content: space-between;
+}
+
+tape {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: 500px;
+    min-height: 200px;
+    background-color: hsl(35, 90%, 83%);
+    overflow-y: auto;
+}
+
+dragbar {
+    /* display: block; */
+    min-height: .5dvmin;
+    height: .5dvmin;
+    width: 100%;
+    background-color: hsl(0, 0%, 20%);
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    transition: 0.1s linear background-color;
+}
+
+dragbar:hover {
+    background-color: hsl(0, 0%, 60%);
+}
+
+headings {
+    display: flex;
+    height: 5dvmin;
+    width: 100dvw;
+    background-color: hsl(35, 100%, 78%);
+    border-top: .5dvmin hsl(0, 0%, 20%) solid;
+    justify-content: space-around;
+}
+
+heading {
+    font-size: 3.5dvmin;
+    padding: .5dvmin;
+}
+
+heading:hover, heading:focus, heading.opened {
+    /* text-decoration: underline 2px;
+    border-bottom: 2px black solid;
+    transition: 0.8s ease-in-out; */
+    text-decoration-thickness: 0.5dvmin;
+    animation: underline 0.1s ease-out forwards;
+}
+
+checkbox, checkbox input {
+    /* flex-grow: 1; */
+    padding: 1dvmin;
+    height: 100%;
+    aspect-ratio: 1;
+    position: relative;
+    z-index: 1;
+}
+
+infoname {
+    display: flex;
+    /* flex-grow: 4; */
+    /* justify-content: center; */
+    align-items: center;
+    justify-content: center;
+}
+
+infoname input {
+    font-family: inherit;
+    font-size: 8dvmin; /* 12 - .8 = 11.2; 80% * 11.2 = 8.96 */
+    /* border: burlywood 10em; */
+    /* border-width: 2px;
+    border-style: solid;
+    border-color: black; */
+    /* box-sizing: border-box; */
+    width: 32dvmin;
+    height: 80%;
+    border-radius: 2dvmin;
+}
+
+definetransitioncontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* flex-grow: 6; */
+}
+
+definetransition, precontainer, postcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+precontainer, postcontainer {
+    display: flex; 
+    flex-direction: row;
+    height: 40%;
+}
+
+/*definetransition */precontainer input, postcontainer input {
+    font-size: 3.5dvmin;
+    width: 32dvmin;
+    height: 100%;
+}
+
+/*definetransition */precontainer input {
+    width: 16dvmin;
+    /* align-self: baseline;
+    justify-self: baseline; */
+    border-top-left-radius: 1dvmin;
+}
+
+postcontainer input {
+    border-bottom-left-radius: 1dvmin;
+    border-bottom-right-radius: 1dvmin;
+}
+
+symbolcontainer {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    margin-left: .1dvmin;
+    /* width: 10%; */
+    align-items: center;
+    justify-content: space-between;
+}
+
+symbolcontainer .clicked {
+    margin-top: 1.4dvmin;
+    background-color: hsl(0, 0%, 0%, 60%) !important;
+}
+
+selectsymbol {
+    display: flex;
+    /* text-align: center;
+    vertical-align: middle; */
+    align-items: center;
+    justify-content: center;
+    color: hsl(0, 0%, 95%);
+    font-weight: bolder;
+    font-size: 100%;
+    height: 3.2dvmin;
+    margin: .4dvmin;
+    aspect-ratio: 1;
+    background-color: hsl(0, 0%, 0%, 20%);
+    border: .3dvmin solid hsl(35, 100%, 28%, 50%);
+    /* width: 100%; */
+}
+
+selectsymbol:hover, selectsymbol:focus {
+    background-color: hsl(0, 0%, 0%, 40%);
+    transition: .4s background-color;
+}
+
+coords {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    /* flex-grow: 3; */
+}
+
+coordinate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40%;
+    margin-right: .5dvmin;
+}
+
+coordinate input {
+    font-size: 2dvmin;
+    width: 12dvmin;
+    height: 100%;
+}
+
+coordinate.x-coord input {
+    border-top-right-radius: 1dvmin;
+}
+
+coordinate.y-coord input {
+    border-bottom-right-radius: 1dvmin;
+}
+
+inputspacing {
+    height: 10%;
+}
+
+.closed {
+    display: none;
+}
+
+.button-box {
+    display: flex;
+    align-items: center;
+    height: 4dvmin;
+    width: 4dvmin;
+    margin: .5dvmin;
+    background-color: hsl(0, 0%, 0%, 10%);
+    border: .3dvmin solid hsl(35, 100%, 28%, 30%);
+}
+
+.button-box:hover, .button-box:focus {
+    background-color: hsl(0, 0%, 0%, 40%);
+    transition: .4s;
+}
+
+.bi {
+    height: 5dvmin;
+    width: 5dvmin;
+}
+
+.bi-trash, .bi-download, .bi-upload {
+    height: 3dvmin;
+}
+
+#line-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvmin;
+    width: 100dvw;
+    pointer-events: none;
+}
+
+
+
+
+
+
+/* .round {
+    position: relative;
+    top: 50%;
+}
+  
+.round label {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 28px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 28px;
+}
+  
+.round label:after {
+    border: 2px solid #fff;
+    border-top: none;
+    border-right: none;
+    content: "";
+    height: 6px;
+    left: 7px;
+    opacity: 0;
+    position: absolute;
+    top: 8px;
+    transform: rotate(-45deg);
+    width: 12px;
+}
+  
+.round input[type="checkbox"] {
+    visibility: hidden;
+}
+  
+.round input[type="checkbox"]:checked + label {
+    background-color: #66bb6a;
+    border-color: #66bb6a;
+}
+  
+.round input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+} */
